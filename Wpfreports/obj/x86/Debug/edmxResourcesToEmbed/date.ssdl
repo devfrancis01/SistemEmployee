@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sistemaEmpleadosModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+  <EntityContainer Name="sistemaEmpleadosModelStoreContainer">
+    <EntitySet Name="Departments" EntityType="sistemaEmpleadosModel.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="sistemaEmpleadosModel.Store.Employees" store:Type="Tables" store:Schema="dbo" store:Name="Employees">
+      <DefiningQuery>SELECT 
+      [Employees].[First_Name] AS [First_Name], 
+      [Employees].[Last_Name] AS [Last_Name], 
+      [Employees].[identification] AS [identification], 
+      [Employees].[Email] AS [Email], 
+      [Employees].[Hiring] AS [Hiring], 
+      [Employees].[Address] AS [Address], 
+      [Employees].[marital_status] AS [marital_status], 
+      [Employees].[Phone_Number] AS [Phone_Number], 
+      [Employees].[Job_Title] AS [Job_Title], 
+      [Employees].[Salary] AS [Salary], 
+      [Employees].[profession] AS [profession], 
+      [Employees].[Manager_ID] AS [Manager_ID], 
+      [Employees].[Nomina] AS [Nomina], 
+      [Employees].[Employee_ID] AS [Employee_ID]
+      FROM [dbo].[Employees] AS [Employees]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_Jobs" Association="sistemaEmpleadosModel.Store.fk_Jobs">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Job_Title" />
+    </Key>
+    <Property Name="Department_ID" Type="int" Nullable="false" />
+    <Property Name="Department_Name" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="Manager_ID" Type="int" Nullable="false" />
+    <Property Name="Job_Title" Type="varchar" Nullable="false" MaxLength="40" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'sistemaEmpleados.dbo.Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="First_Name" />
+      <PropertyRef Name="Last_Name" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="Job_Title" />
+      <PropertyRef Name="Manager_ID" />
+    </Key>
+    <Property Name="First_Name" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="Last_Name" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="identification" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="70" />
+    <Property Name="Hiring" Type="date" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="marital_status" Type="varchar" MaxLength="40" />
+    <Property Name="Phone_Number" Type="varchar" MaxLength="15" />
+    <Property Name="Job_Title" Type="varchar" Nullable="false" MaxLength="40" />
+    <Property Name="Salary" Type="varchar" MaxLength="30" />
+    <Property Name="profession" Type="varchar" MaxLength="40" />
+    <Property Name="Manager_ID" Type="int" Nullable="false" />
+    <Property Name="Nomina" Type="varchar" MaxLength="30" />
+    <Property Name="Employee_ID" Type="int" />
+  </EntityType>
+  <Association Name="fk_Jobs">
+    <End Role="Departments" Type="sistemaEmpleadosModel.Store.Departments" Multiplicity="1" />
+    <End Role="Employees" Type="sistemaEmpleadosModel.Store.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Job_Title" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Job_Title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

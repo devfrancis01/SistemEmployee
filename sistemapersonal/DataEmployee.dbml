@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sistemaEmpleados" Class="DataEmployeeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=sistemaEmpleados;Integrated Security=True" SettingsObjectName="sistemapersonal.Properties.Settings" SettingsPropertyName="sistemaEmpleadosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.emp_details_view" Member="emp_details_view">
+    <Type Name="emp_details_view">
+      <Column Name="First_Name" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="identification" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="Hiring" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="marital_status" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Phone_Number" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Job_Title" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Salary" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="profession" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Department_Name" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Department_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nomina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Employee_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="emp_details_view_Employees" Member="Employees" ThisKey="Employee_ID" OtherKey="Employee_ID" Type="Employees" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employees" Member="Employees">
+    <Type Name="Employees">
+      <Column Name="First_Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Last_Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="identification" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="Hiring" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="marital_status" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Phone_Number" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Job_Title" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Salary" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="profession" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Manager_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nomina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Employee_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="emp_details_view_Employees" Member="emp_details_view" ThisKey="Employee_ID" OtherKey="Employee_ID" Type="emp_details_view" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.searchLingtosqls" Method="searchLingtosqls">
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.String" DbType="Char(7)" />
+    <Parameter Name="mjs" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.searchLingtosql" Method="searchLingtosql">
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="mjs" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.searchsslinqtosql" Method="searchsslinqtosql">
+    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Message" Parameter="message" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ModifyEmpleadoslinqtosql" Method="ModifyEmpleadoslinqtosql">
+    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Last_Name" Parameter="last_Name" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="identification" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(70)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="marital_status" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="Phone_Number" Parameter="phone_Number" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="Job_Title" Parameter="job_Title" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="Salary" Parameter="salary" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="profession" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="Nomina" Parameter="nomina" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="messages" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CancelEmployee" Method="CancelEmployee">
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Messages" Parameter="messages" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CancelEmployees" Method="CancelEmployees">
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Messages" Parameter="messages" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <ElementType Name="CancelEmployeesResult">
+      <Column Name="First_Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Last_Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="identification" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="Hiring" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="marital_status" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Phone_Number" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Job_Title" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Salary" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="profession" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Manager_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nomina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Employee_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertEmpCancele" Method="InsertEmpCancele">
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Hirin_date_start" Parameter="hirin_date_start" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Hirin_date_end" Parameter="hirin_date_end" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Job_Title" Parameter="job_Title" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="REASON_FOR_CANCELLATION" Parameter="rEASON_FOR_CANCELLATION" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="last_Salary" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LAST_NAME" Parameter="lAST_NAME" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="identification" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="message" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertEmpCanceleds" Method="InsertEmpCanceleds">
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Hirin_date_start" Parameter="hirin_date_start" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Hirin_date_end" Parameter="hirin_date_end" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Job_Title" Parameter="job_Title" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="REASON_FOR_CANCELLATION" Parameter="rEASON_FOR_CANCELLATION" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="last_Salary" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LAST_NAME" Parameter="lAST_NAME" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="identification" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="message" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertEmpCancel" Method="InsertEmpCancel">
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Hirin_date_start" Parameter="hirin_date_start" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Hirin_date_end" Parameter="hirin_date_end" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Job_Title" Parameter="job_Title" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="REASON_FOR_CANCELLATION" Parameter="rEASON_FOR_CANCELLATION" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="last_Salary" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LAST_NAME" Parameter="lAST_NAME" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="identification" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="message" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EmpCance" Method="EmpCance">
+    <Parameter Name="Employee_ID" Parameter="employee_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="messages" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

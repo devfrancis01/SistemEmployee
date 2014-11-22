@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sistemaEmpleadosModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+  <EntityContainer Name="sistemaEmpleadosEntitie">
+    <EntitySet Name="Departments" EntityType="sistemaEmpleadosModel.Departments" />
+    <EntitySet Name="Employees" EntityType="sistemaEmpleadosModel.Employees" />
+    <AssociationSet Name="fk_Jobs" Association="sistemaEmpleadosModel.fk_Jobs">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Job_Title" />
+    </Key>
+    <Property Name="Department_ID" Type="Int32" Nullable="false" />
+    <Property Name="Department_Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Manager_ID" Type="Int32" Nullable="false" />
+    <Property Name="Job_Title" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Employees" Relationship="sistemaEmpleadosModel.fk_Jobs" FromRole="Departments" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="First_Name" />
+      <PropertyRef Name="Last_Name" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="Job_Title" />
+      <PropertyRef Name="Manager_ID" />
+    </Key>
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="identification" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="70" Unicode="false" FixedLength="false" />
+    <Property Name="Hiring" Type="DateTime" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="marital_status" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="Phone_Number" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Job_Title" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="Salary" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="profession" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="Manager_ID" Type="Int32" Nullable="false" />
+    <Property Name="Nomina" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Employee_ID" Type="Int32" />
+    <NavigationProperty Name="Departments" Relationship="sistemaEmpleadosModel.fk_Jobs" FromRole="Employees" ToRole="Departments" />
+  </EntityType>
+  <Association Name="fk_Jobs">
+    <End Role="Departments" Type="sistemaEmpleadosModel.Departments" Multiplicity="1" />
+    <End Role="Employees" Type="sistemaEmpleadosModel.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Job_Title" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Job_Title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

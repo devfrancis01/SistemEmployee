@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sistemaEmpleadosModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="sistemaEmpleadosModelStoreContainer">
+          <EntitySet Name="Departments" EntityType="sistemaEmpleadosModel.Store.Departments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Employees" EntityType="sistemaEmpleadosModel.Store.Employees" store:Type="Tables" store:Schema="dbo" store:Name="Employees">
+            <DefiningQuery>SELECT 
+      [Employees].[First_Name] AS [First_Name], 
+      [Employees].[Last_Name] AS [Last_Name], 
+      [Employees].[identification] AS [identification], 
+      [Employees].[Email] AS [Email], 
+      [Employees].[Hiring] AS [Hiring], 
+      [Employees].[Address] AS [Address], 
+      [Employees].[marital_status] AS [marital_status], 
+      [Employees].[Phone_Number] AS [Phone_Number], 
+      [Employees].[Job_Title] AS [Job_Title], 
+      [Employees].[Salary] AS [Salary], 
+      [Employees].[profession] AS [profession], 
+      [Employees].[Manager_ID] AS [Manager_ID], 
+      [Employees].[Nomina] AS [Nomina], 
+      [Employees].[Employee_ID] AS [Employee_ID]
+      FROM [dbo].[Employees] AS [Employees]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_Jobs" Association="sistemaEmpleadosModel.Store.fk_Jobs">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Job_Title" />
+          </Key>
+          <Property Name="Department_ID" Type="int" Nullable="false" />
+          <Property Name="Department_Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Manager_ID" Type="int" Nullable="false" />
+          <Property Name="Job_Title" Type="varchar" Nullable="false" MaxLength="40" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'sistemaEmpleados.dbo.Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="First_Name" />
+            <PropertyRef Name="Last_Name" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Job_Title" />
+            <PropertyRef Name="Manager_ID" />
+          </Key>
+          <Property Name="First_Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Last_Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="identification" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="Hiring" Type="date" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="marital_status" Type="varchar" MaxLength="40" />
+          <Property Name="Phone_Number" Type="varchar" MaxLength="15" />
+          <Property Name="Job_Title" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="Salary" Type="varchar" MaxLength="30" />
+          <Property Name="profession" Type="varchar" MaxLength="40" />
+          <Property Name="Manager_ID" Type="int" Nullable="false" />
+          <Property Name="Nomina" Type="varchar" MaxLength="30" />
+          <Property Name="Employee_ID" Type="int" />
+        </EntityType>
+        <Association Name="fk_Jobs">
+          <End Role="Departments" Type="sistemaEmpleadosModel.Store.Departments" Multiplicity="1" />
+          <End Role="Employees" Type="sistemaEmpleadosModel.Store.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Job_Title" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Job_Title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sistemaEmpleadosModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="sistemaEmpleadosEntitie">
+          <EntitySet Name="Departments" EntityType="sistemaEmpleadosModel.Departments" />
+          <EntitySet Name="Employees" EntityType="sistemaEmpleadosModel.Employees" />
+          <AssociationSet Name="fk_Jobs" Association="sistemaEmpleadosModel.fk_Jobs">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Job_Title" />
+          </Key>
+          <Property Name="Department_ID" Type="Int32" Nullable="false" />
+          <Property Name="Department_Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Manager_ID" Type="Int32" Nullable="false" />
+          <Property Name="Job_Title" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Employees" Relationship="sistemaEmpleadosModel.fk_Jobs" FromRole="Departments" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="First_Name" />
+            <PropertyRef Name="Last_Name" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Job_Title" />
+            <PropertyRef Name="Manager_ID" />
+          </Key>
+          <Property Name="First_Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="identification" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="70" Unicode="false" FixedLength="false" />
+          <Property Name="Hiring" Type="DateTime" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="marital_status" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Phone_Number" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Job_Title" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Salary" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="profession" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Manager_ID" Type="Int32" Nullable="false" />
+          <Property Name="Nomina" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Employee_ID" Type="Int32" />
+          <NavigationProperty Name="Departments" Relationship="sistemaEmpleadosModel.fk_Jobs" FromRole="Employees" ToRole="Departments" />
+        </EntityType>
+        <Association Name="fk_Jobs">
+          <End Role="Departments" Type="sistemaEmpleadosModel.Departments" Multiplicity="1" />
+          <End Role="Employees" Type="sistemaEmpleadosModel.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Job_Title" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Job_Title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="sistemaEmpleadosModelStoreContainer" CdmEntityContainer="sistemaEmpleadosEntitie">
+          <EntitySetMapping Name="Departments"><EntityTypeMapping TypeName="sistemaEmpleadosModel.Departments"><MappingFragment StoreEntitySet="Departments">
+            <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+            <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
+            <ScalarProperty Name="Manager_ID" ColumnName="Manager_ID" />
+            <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Employees"><EntityTypeMapping TypeName="sistemaEmpleadosModel.Employees"><MappingFragment StoreEntitySet="Employees">
+            <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+            <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+            <ScalarProperty Name="identification" ColumnName="identification" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Hiring" ColumnName="Hiring" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+            <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+            <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />
+            <ScalarProperty Name="Salary" ColumnName="Salary" />
+            <ScalarProperty Name="profession" ColumnName="profession" />
+            <ScalarProperty Name="Manager_ID" ColumnName="Manager_ID" />
+            <ScalarProperty Name="Nomina" ColumnName="Nomina" />
+            <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="fk_Jobs" TypeName="sistemaEmpleadosModel.fk_Jobs" StoreEntitySet="Employees">
+            <EndProperty Name="Departments">
+              <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />
+            </EndProperty>
+            <EndProperty Name="Employees">
+              <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+              <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+              <ScalarProperty Name="Address" ColumnName="Address" />
+              <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />
+              <ScalarProperty Name="Manager_ID" ColumnName="Manager_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="date">
+        <EntityTypeShape EntityType="sistemaEmpleadosModel.Departments" Width="1.5" PointX="0.75" PointY="2" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemaEmpleadosModel.Employees" Width="1.5" PointX="3" PointY="1" Height="3.9033007812499996" IsExpanded="true" />
+        <AssociationConnector Association="sistemaEmpleadosModel.fk_Jobs" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.9901432291666667" />
+          <ConnectorPoint PointX="3" PointY="2.9901432291666667" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

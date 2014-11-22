@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sistemapersonal", "sistemapersonal\sistemapersonal.csproj", "{47214111-5A81-4AE1-B45D-B81050FC7062}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A25FC29-945B-4D0B-882C-0A63B9E560B6} = {3A25FC29-945B-4D0B-882C-0A63B9E560B6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpfreports", "Wpfreports\Wpfreports.csproj", "{3A25FC29-945B-4D0B-882C-0A63B9E560B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47214111-5A81-4AE1-B45D-B81050FC7062}.Debug|x86.ActiveCfg = Debug|x86
+		{47214111-5A81-4AE1-B45D-B81050FC7062}.Debug|x86.Build.0 = Debug|x86
+		{47214111-5A81-4AE1-B45D-B81050FC7062}.Release|x86.ActiveCfg = Release|x86
+		{47214111-5A81-4AE1-B45D-B81050FC7062}.Release|x86.Build.0 = Release|x86
+		{3A25FC29-945B-4D0B-882C-0A63B9E560B6}.Debug|x86.ActiveCfg = Debug|x86
+		{3A25FC29-945B-4D0B-882C-0A63B9E560B6}.Debug|x86.Build.0 = Debug|x86
+		{3A25FC29-945B-4D0B-882C-0A63B9E560B6}.Release|x86.ActiveCfg = Release|x86
+		{3A25FC29-945B-4D0B-882C-0A63B9E560B6}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
